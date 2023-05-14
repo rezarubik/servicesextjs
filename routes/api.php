@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'link'], function () {
     Route::get('', [LinkController::class, 'index_data']);
     Route::post('store', [LinkController::class, 'store']);
-    Route::post('update/{id}', [LinkController::class, 'update']);
-    Route::post('delete/{id}', [LinkController::class, 'delete']);
+    Route::post('update', [LinkController::class, 'update']);
+    Route::post('delete', [LinkController::class, 'delete']);
 });

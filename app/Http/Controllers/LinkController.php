@@ -46,11 +46,12 @@ class LinkController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
             DB::beginTransaction();
-            $link = Link::find($id);
+            $link_id = $request->id;
+            $link = Link::find($link_id);
             if (!$link) {
                 DB::rollBack();
                 return response()->json([
@@ -78,11 +79,12 @@ class LinkController extends Controller
         }
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request)
     {
         try {
             DB::beginTransaction();
-            $link = Link::find($id);
+            $link_id = $request->id;
+            $link = Link::find($link_id);
             if (!$link) {
                 DB::rollBack();
                 return response()->json([
@@ -94,7 +96,7 @@ class LinkController extends Controller
             DB::commit();
             return response()->json([
                 'status' => true,
-                'message' => 'Data successfully updated!'
+                'message' => 'Data successfully deleted!'
             ]);
         } catch (\Throwable $th) {
             return response()->json([
